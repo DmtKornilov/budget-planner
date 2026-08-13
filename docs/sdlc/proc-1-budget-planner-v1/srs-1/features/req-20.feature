@@ -1,0 +1,11 @@
+Feature: Allow the user to define a financial or lifestyle goal
+
+  Scenario: Define a financial goal
+    Given the user is logged in
+    When the user sets a goal to save 500 PLN this month
+    Then the goal should be stored against the user's account
+
+  Scenario: Define a lifestyle goal
+    Given the user is logged in
+    When the user sets a goal to lose weight
+    Then the goal should be stored against the user's account
