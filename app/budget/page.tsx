@@ -1,6 +1,7 @@
 import { receiptStore } from "@/lib/singletons";
 import { CURRENT_USER_ID } from "@/lib/auth/currentUser";
 import { calculateMonthlyBudget } from "@/lib/budget/budgetService";
+import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
 
@@ -32,19 +33,21 @@ export default async function BudgetPage({
       </h2>
 
       {!hasAnyReceipts ? (
-        <p>No receipts recorded for this month yet.</p>
+        <p className={styles.empty}>No receipts recorded for this month yet.</p>
       ) : (
-        <>
-          <p>
+        <div className={styles.card}>
+          <p className={styles.total}>
             Total: {summary.total.toFixed(2)}
-            {summary.incomplete ? <strong> (incomplete — month in progress)</strong> : null}
+            {summary.incomplete ? (
+              <strong className={styles.incomplete}> (incomplete — month in progress)</strong>
+            ) : null}
           </p>
           {summary.excludedCount > 0 ? (
-            <p>
+            <p className={styles.excluded}>
               {summary.excludedCount} receipt{summary.excludedCount === 1 ? "" : "s"} excluded pending review.
             </p>
           ) : null}
-        </>
+        </div>
       )}
     </main>
   );

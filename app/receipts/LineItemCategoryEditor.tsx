@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import styles from "./LineItemCategoryEditor.module.css";
 
 interface Props {
   receiptId: string;
@@ -46,6 +47,7 @@ export function LineItemCategoryEditor({ receiptId, lineItemIndex, currentCatego
         value={currentCategory}
         onChange={handleChange}
         disabled={isPending}
+        className={styles.select}
       >
         {categories.map((category) => (
           <option key={category} value={category}>
@@ -53,7 +55,11 @@ export function LineItemCategoryEditor({ receiptId, lineItemIndex, currentCatego
           </option>
         ))}
       </select>
-      {error ? <span role="alert"> {error}</span> : null}
+      {error ? (
+        <span role="alert" className={styles.error}>
+          {error}
+        </span>
+      ) : null}
     </span>
   );
 }

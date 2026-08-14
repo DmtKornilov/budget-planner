@@ -1,0 +1,65 @@
+/* Shared design tokens (req-1). Referenced by app/layout.tsx and every
+   screen's .module.css — no screen should define competing hardcoded
+   color/spacing/type values outside these tokens. */
+:root {
+  /* Color palette. Text/background pairings meet WCAG AA (4.5:1 normal
+     text, 3:1 large text/headings) against --color-bg and --color-surface. */
+  --color-bg: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-border: #e2e4e8;
+  --color-text: #1f2430;
+  --color-text-secondary: #5b6472;
+  --color-accent: #1d4ed8;
+  --color-accent-hover: #1e40af;
+  --color-warning-text: #92400e;
+  --color-warning-bg: #fff4e5;
+  --color-error-text: #b42318;
+  --color-error-bg: #fdecec;
+
+  /* Typography scale */
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  color: var(--color-text);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}

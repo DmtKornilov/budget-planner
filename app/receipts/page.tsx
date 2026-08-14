@@ -2,6 +2,7 @@ import { receiptStore } from "@/lib/singletons";
 import { CURRENT_USER_ID } from "@/lib/auth/currentUser";
 import { CATEGORY_TAXONOMY, UNCATEGORIZED } from "@/lib/categorization/categories";
 import { LineItemCategoryEditor } from "./LineItemCategoryEditor";
+import styles from "./page.module.css";
 
 // Read from the shared in-memory store on every request — a stub for a
 // real user session/data layer, not a page that should ever be statically
@@ -21,15 +22,17 @@ export default function ReceiptsPage() {
       <h1>Receipts</h1>
 
       {receipts.length === 0 ? (
-        <p>No receipts yet. Digitize a receipt to see it here.</p>
+        <p className={styles.empty}>No receipts yet. Digitize a receipt to see it here.</p>
       ) : (
         receipts.map((receipt) => (
-          <section key={receipt.id} aria-label={`Receipt from ${receipt.merchant}`}>
-            <h2>
+          <section key={receipt.id} className={styles.receipt} aria-label={`Receipt from ${receipt.merchant}`}>
+            <h2 className={styles.receiptHeading}>
               {receipt.merchant} — {receipt.transactionDate}
-              {receipt.status === "manual_review" ? " (requires manual review)" : ""}
+              {receipt.status === "manual_review" ? (
+                <span className={styles.manualReview}> (requires manual review)</span>
+              ) : null}
             </h2>
-            <table>
+            <table className={styles.table}>
               <thead>
                 <tr>
                   <th>Item</th>
@@ -43,13 +46,15 @@ export default function ReceiptsPage() {
                     <td>{item.name}</td>
                     <td>{item.totalPrice.toFixed(2)}</td>
                     <td>
-                      {item.category ?? UNCATEGORIZED}
-                      <LineItemCategoryEditor
-                        receiptId={receipt.id}
-                        lineItemIndex={index}
-                        currentCategory={item.category ?? UNCATEGORIZED}
-                        categories={CATEGORY_TAXONOMY}
-                      />
+                      <span className={styles.categoryCell}>
+                        {item.category ?? UNCATEGORIZED}
+                        <LineItemCategoryEditor
+                          receiptId={receipt.id}
+                          lineItemIndex={index}
+                          currentCategory={item.category ?? UNCATEGORIZED}
+                          categories={CATEGORY_TAXONOMY}
+                        />
+                      </span>
                     </td>
                   </tr>
                 ))}

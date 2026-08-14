@@ -1,0 +1,30 @@
+.select {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-2);
+}
+
+.select:hover:not(:disabled) {
+  border-color: var(--color-accent);
+}
+
+.select:disabled {
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+  cursor: wait;
+}
+
+.error {
+  display: block;
+  margin-top: var(--space-1);
+  color: var(--color-error-text);
+  background: var(--color-error-bg);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-sm);
+}
